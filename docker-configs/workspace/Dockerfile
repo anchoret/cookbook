@@ -2,6 +2,8 @@ FROM php:7.2-cli-alpine
 
 COPY --from=composer:1.6 /usr/bin/composer /usr/bin/composer
 
+RUN docker-php-ext-install pdo_mysql
+
 ARG DATE_TIMEZONE=Europe/Moscow
 RUN echo "date.timezone=${DATE_TIMEZONE}\n" > "${PHP_INI_DIR}/conf.d/date_timezone.ini" \
   && echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini"
