@@ -1,0 +1,5 @@
+#!/bin/sh
+
+source ./base_commands.sh 
+
+dc_exec_command composer $@
