@@ -17,4 +17,4 @@ ARG DATE_TIMEZONE=Europe/Moscow
 RUN echo "cgi.fix_pathinfo=0\nexpose_php=0\n" > "${PHP_INI_DIR}/conf.d/secure.ini" \
   && echo "date.timezone=${DATE_TIMEZONE}\n" > "${PHP_INI_DIR}/conf.d/date_timezone.ini"
 
-WORKDIR /app
+WORKDIR /cookbook

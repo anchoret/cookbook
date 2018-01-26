@@ -14,10 +14,10 @@ RUN addgroup -g ${USER_GID} laravel \
   && adduser -D -u ${USER_UID} -G laravel laravel
 
 RUN touch crontab.tmp \
-  && echo '* * * * * /usr/local/bin/php /app/artisan schedule:run' > crontab.tmp \
+  && echo '* * * * * /usr/local/bin/php /cookbook/artisan schedule:run' > crontab.tmp \
   && crontab -u laravel crontab.tmp \
   && rm -rf crontab.tmp
 
-WORKDIR /app
+WORKDIR /cookbook
 
 ENTRYPOINT ["/usr/sbin/crond", "-f", "-d", "0"]
