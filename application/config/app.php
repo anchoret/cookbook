@@ -125,6 +125,8 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    'log_filename_prefix' => env('APP_LOG_FILENAME_PREFIX', 'laravel'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -176,6 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SplitLogServiceProvider::class,
 
     ],
 
