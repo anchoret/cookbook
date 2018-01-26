@@ -41,6 +41,22 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->configureMonologUsing(function (\Monolog\Logger $monolog) use ($app) {
+    $handler = new \Monolog\Handler\StreamHandler(
+        $app->storagePath().'/logs/laravel-'.php_sapi_name().'.log',
+        $app->make('config')->get('app.log_level', 'debug')
+    );
+    $handler->setFormatter(
+        tap(
+            new \Monolog\Formatter\LineFormatter(null, null, true, true),
+            function (\Monolog\Formatter\LineFormatter $formatter) {
+                $formatter->includeStacktraces();
+            })
+    );
+
+    $monolog->pushHandler($handler);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
